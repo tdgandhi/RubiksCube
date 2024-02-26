@@ -9,8 +9,9 @@ We will create a class to represent Rubiks Cube and find different ways to easil
 
 
 ## TODO 
-Complete horizontal move function. 
-Add tests for vertical move and horizontal move.
+-> Create a random initializer and value provided initializer.
+-> Add tests for vertical move and horizontal move.
+-> Can add a clockwise / anti clockwise option for moves, investigate if it is worth it, and add the functionality if it is worth it.
 
 
 ## Followups 

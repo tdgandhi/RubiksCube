@@ -22,6 +22,7 @@ public:
   // Cube(Face *faces) : faces_(faces) {}
   Cube () {}
 
+  // TODO: Create a random initializer
   /* 
     Makes a vertical move. Specify which strip to move.
     stripNo defines the position of the strip to move: 0 (left), 1 (middle), 2 (right)
@@ -59,12 +60,32 @@ public:
   void horizontalMove(int stripNo) {
     // front, right, back, left
     
-    // store left
-    Color top_temp[3];
+    // store front
+    Color front_temp[3];
+    front_temp[0] = front.colors_[stripNo][0];
+    front_temp[1] = front.colors_[stripNo][1];
+    front_temp[2] = front.colors_[stripNo][2];
+
+    // left goes to front
+    front.colors_[stripNo][0] = left.colors_[stripNo][0];
+    front.colors_[stripNo][1] = left.colors_[stripNo][1];
+    front.colors_[stripNo][2] = left.colors_[stripNo][2];
+
+    // back goes to left 
+    left.colors_[stripNo][0] = back.colors_[stripNo][0];
+    left.colors_[stripNo][1] = back.colors_[stripNo][1];
+    left.colors_[stripNo][2] = back.colors_[stripNo][2];
     
+    // right goes to back
+    back.colors_[stripNo][0] = right.colors_[stripNo][0];
+    back.colors_[stripNo][1] = right.colors_[stripNo][1];
+    back.colors_[stripNo][2] = right.colors_[stripNo][2];
+
+    // stored value (front) goes to right
+    right.colors_[stripNo][0] = front_temp[0];
+    right.colors_[stripNo][1] = front_temp[1];
+    right.colors_[stripNo][2] = front_temp[2];
   }
-
-
 
 private:
   Face up;
