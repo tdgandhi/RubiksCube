@@ -3,6 +3,7 @@
 enum class Color { Color1, Color2, Color3, Color4, Color5, Color6 };
 enum class FacePosition { Up, Down, Front, Back, Left, Right };
 
+/* Represents a single face in rubik's cube. This contains of 9 color tiles */
 class Face {
 public:
   Face(Color **colors, FacePosition position) : colors_(colors), position_(position) {
@@ -12,7 +13,7 @@ public:
   }
   Face() {}
 
-  Color **colors_; // This 2D grid represents the 
+  Color **colors_; // This 2D grid represents the tiles in face.
   FacePosition position_;
 };
 
@@ -21,7 +22,10 @@ public:
   // Cube(Face *faces) : faces_(faces) {}
   Cube () {}
 
-  // Makes a vertical move. Specify which strip to move: 0 (left), 1 (middle), 2 (right)
+  /* 
+    Makes a vertical move. Specify which strip to move.
+    stripNo defines the position of the strip to move: 0 (left), 1 (middle), 2 (right)
+  */
   void verticalMove(int stripNo) {
     // Store top somewhere.
     Color top_temp[3];
@@ -50,15 +54,14 @@ public:
     front.colors_[0][2] = top_temp[2];
   }
 
-  // Makes a horizontal move. Specify which strip to move: 0 (top), 1 (middle), 2 (bottom)
+  // Makes a horizontal move. Specify which strip to move.
+  // stripNo defines the position of the strip to move: 0 (top), 1 (middle), 2 (bottom)
   void horizontalMove(int stripNo) {
     // front, right, back, left
     
     // store left
     Color top_temp[3];
     
- 
-
   }
 
 
