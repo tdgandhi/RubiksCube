@@ -18,3 +18,7 @@ We will create a class to represent Rubiks Cube and find different ways to easil
 
 ## Followups 
 -> Generalize this for cubes with more than 9 color tiles on each face.
+
+
+## Other efforts and what differentiates this project / them
+

@@ -1,7 +1,8 @@
 #include <stdexcept>
 
-enum class Color { Color1, Color2, Color3, Color4, Color5, Color6 };
-enum class FacePosition { Up, Down, Front, Back, Left, Right };
+#include "rubiks.h"
+
+namespace rubiks {
 
 /* Represents a single face in rubik's cube. This contains of 9 color tiles */
 class Face {
@@ -42,9 +43,10 @@ public:
       }
     }
   }
-  // Randomly initialies a given permutation of a cube
+  // Randomly initialies a given permutation of a cube.
   Cube () {
-    // Creates a solved cube first. And then creates 
+    // Creates a solved cube first. And then unsolves it first.
+
   }
 
   // TODO: Create a random initializer
@@ -121,3 +123,4 @@ private:
   Face right;
 };
 
+} // namespace rubiks
