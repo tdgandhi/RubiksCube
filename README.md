@@ -6,6 +6,8 @@ We will create a class to represent Rubiks Cube and find different ways to easil
    different permutation. 
 -> A file to define and modify permutations and create efficient ways to solve a rubik's cube.
 
+## All stuff it does
+-> We have tested if any random permutation given can be solvable or not, or are there only certain number of solvable permutations.
 
 
 ## TODO 

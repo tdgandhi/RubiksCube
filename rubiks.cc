@@ -19,8 +19,33 @@ public:
 
 class Cube {
 public:
-  // Cube(Face *faces) : faces_(faces) {}
-  Cube () {}
+  // Given a list of 6 faces, initializes the cube
+  Cube(Face *faces) {
+    for (int i = 0; i < 6; i++) {
+      if (faces->position_ == FacePosition::Up) {
+        up = faces[i];
+      }
+      if (faces-> position_ == FacePosition::Front) {
+        front = faces[i];
+      }
+      if (faces-> position_ == FacePosition::Down) {
+        down = faces[i];
+      }
+      if (faces-> position_ == FacePosition::Back) {
+        back = faces[i];
+      }
+      if (faces -> position_ == FacePosition::Left) {
+        left = faces[i];
+      }
+      if (faces -> position_ == FacePosition::Right) {
+        right = faces[i];
+      }
+    }
+  }
+  // Randomly initialies a given permutation of a cube
+  Cube () {
+    // Creates a solved cube first. And then creates 
+  }
 
   // TODO: Create a random initializer
   /* 
