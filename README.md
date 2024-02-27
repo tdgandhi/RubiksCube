@@ -22,3 +22,9 @@ We will create a class to represent Rubiks Cube and find different ways to easil
 
 ## Other efforts and what differentiates this project / them
 
+[StanislavPetrovV's Implementation](https://www.youtube.com/watch?v=OR2_zQN_Gbk):   
+What it does: 
+
+How it is different from ours:
+  
+
