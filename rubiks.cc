@@ -4,20 +4,30 @@
 
 namespace rubiks {
 
-/* Represents a single face in rubik's cube. This contains of 9 color tiles */
+/* Constructor 1 of Face class, this accept an array of 3x3 and initializes the face */
 Face::Face(Color **colors, FacePosition position) : colors_(colors), position_(position) {
-  if (colors_ == nullptr) 
+  if (colors_ == nullptr)
       throw std::invalid_argument("colors cannot be null");
-  // TODO: Make sure that colors is a valid face.
+  // TODO: Make sure that colors is a valid face. Fix it if you want to use it.
 }
-Face::Face() {}
+
+/* Constructor 2 of Face class. This accepts a color and initializes entire face with that color */
+Face::Face(Color color, FacePosition position) : position_(position) {
+
+}
+
+/* This is the default constructor, never use this */
+Face::Face() {
+
+}
+
 
 
 // Given a list of 6 faces, initializes the cube
 Cube::Cube(Face *faces) {
   for (int i = 0; i < 6; i++) {
     if (faces->position_ == FacePosition::Up) {
-      up = faces[i];
+      up = Face(faces[i]);
     }
     if (faces-> position_ == FacePosition::Front) {
       front = faces[i];
@@ -39,6 +49,15 @@ Cube::Cube(Face *faces) {
 // Randomly initialies a given permutation of a cube.
 Cube::Cube () {
   // Creates a solved cube first. And then unsolves it first.
+  // Solved cube.
+  up.position_ = FacePosition::Up;
+  down.position_ = FacePosition::Up;
+  
+  for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+      up.colors_[i][j] = Color::Color1;
+    }
+  }
 
 }
 

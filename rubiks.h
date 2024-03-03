@@ -11,9 +11,13 @@ enum class FacePosition { Up, Down, Front, Back, Left, Right };
 
 class Face {
  public:
+  /* Constructor 1 of Face class, this accept an array of 3x3 and initializes the face */
   Face(Color **colors, FacePosition position);
-  Face();
-
+  /* Constructor 2 of Face class, this accept a single color and initializes all the tiles with the same color */
+  Face(Color color, FacePosition position);
+  
+  /* This is the default constructor. Never use this */
+  Face() {};
   Color **colors_; // This 2D grid represents the tiles in face.
   FacePosition position_;
 };
@@ -26,7 +30,6 @@ public:
   // Randomly initialies a given permutation of a cube.
   Cube ();
 
-  // TODO: Create a random initializer
   /* 
     Makes a vertical move. Specify which strip to move.
     stripNo defines the position of the strip to move: 0 (left), 1 (middle), 2 (right)
