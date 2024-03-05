@@ -11,9 +11,9 @@ We will create a class to represent Rubiks Cube and find different ways to easil
 
 
 ## TODO 
--> Add tests for vertical move and horizontal move.    
--> Can add a clockwise / anti clockwise option for moves, investigate if it is worth it, and add the functionality if it is worth it.
--> Validate the creation of cube and face. (make sure no unexpected errors happen) (especially with this default constructor business)  
+-> Add tests for vertical move and horizontal move.     
+-> Can add a clockwise / anti clockwise option for moves, investigate if it is worth it, and add the functionality if it is worth it.    
+-> Validate the creation of cube and face. (make sure no unexpected errors happen) (especially with this default constructor business)      
 
 
 ## Followups 
