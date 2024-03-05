@@ -28,7 +28,7 @@ public:
   Cube(Face *faces);
   
   // Randomly initialies a given permutation of a cube.
-  Cube ();
+  Cube (bool solved);
 
   /* 
     Makes a vertical move. Specify which strip to move.

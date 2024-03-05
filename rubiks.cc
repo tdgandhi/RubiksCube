@@ -47,18 +47,35 @@ Cube::Cube(Face *faces) {
   }
 }
 // Randomly initialies a given permutation of a cube.
-Cube::Cube () {
+Cube::Cube (bool solved = false) {
   // Creates a solved cube first. And then unsolves it first.
   // Solved cube.
   up.position_ = FacePosition::Up;
-  down.position_ = FacePosition::Up;
+  down.position_ = FacePosition::Down;
+  front.position_ = FacePosition::Front;
+  back.position_ = FacePosition::Back;
+  left.position_ = FacePosition::Left;
+  right.position_ = FacePosition::Right;
   
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
       up.colors_[i][j] = Color::Color1;
+      down.colors_[i][j] = Color::Color2;
+      front.colors_[i][j] = Color::Color3;
+      back.colors_[i][j] = Color::Color4;
+      left.colors_[i][j] = Color::Color5;
+      right.colors_[i][j] = Color::Color6;
     }
   }
 
+  // Now unsolve it.
+  srand(time(0));
+  for (int i = 0; i < rand() % 100; i++) {
+    srand(time(0));
+    verticalMove(rand() % 3);
+    srand(time(0));
+    horizontalMove(rand() % 3);
+  }
 }
 
 /* 
