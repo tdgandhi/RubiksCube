@@ -11,9 +11,12 @@ We will create a class to represent Rubiks Cube and find different ways to easil
 
 
 ## TODO 
--> Add tests for vertical move and horizontal move.     
--> Can add a clockwise / anti clockwise option for moves, investigate if it is worth it, and add the functionality if it is worth it.    
+-> (tgandhi) Add tests for vertical move and horizontal move.   
+   -> Integrate catch 2
+   -> Update the dir. structure to separate includes, binary code (in /bin) and 
+-> (tdgandhi) Can add a clockwise / anti clockwise option for moves, investigate if it is worth it, and add the functionality if it is worth it.    
 -> Validate the creation of cube and face. (make sure no unexpected errors happen) (especially with this default constructor business)      
+-> Write down the basic brute force algorithm. Find some other efficient algorithms, and see if you can make it better?
 
 
 ## Followups 

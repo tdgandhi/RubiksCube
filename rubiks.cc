@@ -21,8 +21,6 @@ Face::Face() {
 
 }
 
-
-
 // Given a list of 6 faces, initializes the cube
 Cube::Cube(Face *faces) {
   for (int i = 0; i < 6; i++) {
