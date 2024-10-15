@@ -5,7 +5,6 @@
 
 namespace rubiks {
 
-
 enum class Color { Color1, Color2, Color3, Color4, Color5, Color6 };
 enum class FacePosition { Up, Down, Front, Back, Left, Right };
 
@@ -49,13 +48,6 @@ private:
   Face right;
 };
 
-
-
-
-
-
 } // namespace rubiks
-
-
 
 #endif
