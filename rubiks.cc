@@ -1,25 +1,6 @@
-#include <stdexcept>
-
 #include "rubiks.h"
 
 namespace rubiks {
-
-/* Constructor 1 of Face class, this accept an array of 3x3 and initializes the face */
-Face::Face(Color **colors, FacePosition position) : colors_(colors), position_(position) {
-  if (colors_ == nullptr)
-      throw std::invalid_argument("colors cannot be null");
-  // TODO: Make sure that colors is a valid face. Fix it if you want to use it.
-}
-
-/* Constructor 2 of Face class. This accepts a color and initializes entire face with that color */
-Face::Face(Color color, FacePosition position) : position_(position) {
-
-}
-
-/* This is the default constructor, never use this */
-Face::Face() {
-
-}
 
 // Given a list of 6 faces, initializes the cube
 Cube::Cube(Face *faces) {
