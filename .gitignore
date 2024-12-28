@@ -28,3 +28,6 @@ Thumbs.db
 
 # Ignore backup files
 *~
+
+# Ignore all other local files
+git_upload.sh
