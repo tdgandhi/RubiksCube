@@ -3,8 +3,7 @@
 
 #include "/Users/tejangandhi/Programming/RubiksCube/face.h"
 
-namespace rubiks
-{
+namespace rubiks {
 
     /* Constructor 1 of Face class, this accept an array of 3x3 and initializes the face */
     Face::Face(std::vector<std::vector<Color>> face, FacePosition position) : colors_(face), position_(position) {}
