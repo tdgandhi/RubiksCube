@@ -7,11 +7,13 @@
 namespace rubiks {
 class Cube {
 public:
-  // Given a list of 6 faces, initializes the cube
-  Cube(Face *faces);
+  // Given another cube, initializes this cube.
+  Cube(Face *faces) {
+    
+  }
   
   // Randomly initialies a given permutation of a cube.
-  Cube (bool solved);
+  Cube(bool solved);
 
   /* 
     Makes a vertical move. Specify which strip to move.

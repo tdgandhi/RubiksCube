@@ -1,11 +1,9 @@
 # RubiksCube
 We will create a class to represent Rubiks Cube and find different ways to easily brute force and solve it.
 
-## The code is mainly divided into two parts: 
--> A rubik's cube class that represents a single permutation of a cube and ways to change it to a  
-   different permutation.    
--> A file to define and modify permutations and create efficient ways to solve a rubik's cube.   
-
+## The code is mainly divided into the following parts: 
+-> The face class, which represents a single face on a cube.
+  ->
 ## All stuff it does
 -> We have tested if any random permutation given can be solvable or not, or are there only certain number of solvable permutations.   
 

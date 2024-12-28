@@ -5,24 +5,34 @@
 
 namespace rubiks {
 
-/* Constructor 1 of Face class, this accept an array of 3x3 and initializes the
- * face */
-Face::Face(std::vector<std::vector<Color>> face, FacePosition position)
-    : colors_(face), position_(position) {}
+  // Gets the ith row of the face.
+  Color* Face::GetIthRow(int i) {
+    return colors_[i];
+  }
 
-/* Constructor 2 of Face class. This accepts a color and initializes entire face
- * with that color */
-Face::Face(Color color, FacePosition position) : position_(position) {
-  // Color color_grid[3][3] = ;
-  colors_ = {
-      {color, color, color}, {color, color, color}, {color, color, color}};
-}
+  // Gets the ith column of the face.
+  Color* Face::GetIthColumn(int i) {
+    Color colors[] = {colors_[0][i], colors_[1][i], colors_[2][i]};
+    return colors;
+  }
 
-/* This is the default constructor, never use this */
-Face::Face() {
-  colors_ = {{Color::Color1, Color::Color1, Color::Color1},
-             {Color::Color1, Color::Color1, Color::Color1},
-             {Color::Color1, Color::Color1, Color::Color1}};
-}
+  bool Face::SwapIthRow(Color row[], int i) {
+    if (colors_ == nullptr) {
+        return false;
+    }
+    colors_[i] = row;
+
+    return true;
+  }
+
+  bool Face::SwapIthColumn(Color column[], int i) {
+    if (colors_ == nullptr) {
+        return false;
+    }
+    for (int ind = 0; ind < 3; ind++) {
+        colors_[ind][i] = column[ind];
+    }
+    return true;
+  }
 
 } // namespace rubiks
