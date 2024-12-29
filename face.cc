@@ -16,16 +16,17 @@ namespace rubiks {
     return colors;
   }
 
-  bool Face::SwapIthRow(Color row[], int i) {
+  bool Face::SwapIthRow(const Color row[], int i) {
     if (colors_ == nullptr) {
         return false;
     }
-    colors_[i] = row;
-
+    for (int ind = 0; ind < 3; ind++) {
+        colors_[i][ind] = row[ind];
+    }
     return true;
   }
 
-  bool Face::SwapIthColumn(Color column[], int i) {
+  bool Face::SwapIthColumn(const Color column[], int i) {
     if (colors_ == nullptr) {
         return false;
     }

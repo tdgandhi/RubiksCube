@@ -46,6 +46,18 @@ public:
     }
   }
 
+  /* Copy Constructor */
+  Face::Face(const Face& other) {
+    colors_ = new Color *[3];
+    position_ = other.position_;
+    for (int i = 0; i < 3; i++) {
+      colors_[i] = new Color[3];
+      for (int j = 0; j < 3; j++) {
+        colors_[i][j] = other.colors_[i][j];
+      }
+    }
+  }
+
   /* This is the default constructor. It gives a cube with random colors.
   Never use this */
   Face::Face() {
@@ -58,13 +70,17 @@ public:
     }
   }
 
+  // Retuns ith row of the face.
   Color *GetIthRow(int i);
 
+  // Returns ith column of the face.
   Color *GetIthColumn(int i);
 
-  bool SwapIthRow(Color color[], int i);
+  // Swaps the ith row of the face with the passed in row.
+  bool SwapIthRow(const Color row[], int i);
 
-  bool SwapIthColumn(Color color[], int i);
+  // Swaps the ith row of the face with the passed in row.s
+  bool SwapIthColumn(const Color column[], int i);
 
 private:
   // This 2D grid represents the tiles in face.
