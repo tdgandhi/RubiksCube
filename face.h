@@ -24,7 +24,7 @@ class Face {
 public:
   /* Constructor 1 of Face class, this accept an array of 3x3 and initializes
    * the face */
-  Face::Face(Color colors[3][3], FacePosition position) : position_(position) {
+  Face(Color colors[3][3], FacePosition position) : position_(position) {
     colors_ = new Color *[3];
     for (int i = 0; i < 3; i++) {
       colors_[i] = new Color[3];
@@ -36,7 +36,7 @@ public:
 
   /* Constructor 2 of Face class. This accepts a color and initializes entire
    * face with that color */
-  Face::Face(Color color, FacePosition position) : position_(position) {
+  Face(Color color, FacePosition position) : position_(position) {
     colors_ = new Color *[3];
     for (int i = 0; i < 3; i++) {
       colors_[i] = new Color[3];
@@ -47,7 +47,7 @@ public:
   }
 
   /* Copy Constructor */
-  Face::Face(const Face& other) {
+  Face(const Face& other) {
     colors_ = new Color *[3];
     position_ = other.position_;
     for (int i = 0; i < 3; i++) {
@@ -60,7 +60,7 @@ public:
 
   /* This is the default constructor. It gives a cube with random colors.
   Never use this */
-  Face::Face() {
+  Face() {
     colors_ = new Color *[3];
     for (int i = 0; i < 3; i++) {
       colors_[i] = new Color[3];
@@ -81,6 +81,12 @@ public:
 
   // Swaps the ith row of the face with the passed in row.s
   bool SwapIthColumn(const Color column[], int i);
+
+  // Prints the face.
+  void PrintFace();
+
+  // Prints the color.
+  void PrintColor(Color color);
 
 private:
   // This 2D grid represents the tiles in face.
