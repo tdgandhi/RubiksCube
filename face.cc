@@ -81,4 +81,14 @@ void Face::PrintColor(Color color) {
   }
 }
 
+bool Face::IsFaceUniform() {
+    Color first_color = colors_[0][0];
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        if (colors_[i][j] != first_color) return false;
+      }
+    }
+  return true;
+}
+
 } // namespace rubiks

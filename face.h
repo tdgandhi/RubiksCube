@@ -1,3 +1,6 @@
+#ifndef  FACE_H
+#define FACE_H
+
 #include <vector>
 
 namespace rubiks {
@@ -88,6 +91,9 @@ public:
   // Prints the color.
   void PrintColor(Color color);
 
+  // Check if the face is uniform or not.
+  bool IsFaceUniform();
+
 private:
   // This 2D grid represents the tiles in face.
   Color **colors_;
@@ -96,3 +102,5 @@ private:
 };
 
 } // namespace rubiks
+
+#endif

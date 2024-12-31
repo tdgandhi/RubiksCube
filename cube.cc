@@ -1,32 +1,43 @@
 #include "/Users/tejangandhi/Programming/RubiksCube/cube.h"
 
+#include <iostream>
 #include <stdexcept>
 #include <string>
-#include <iostream>
 
 namespace rubiks {
 
 namespace {
-  std::string GetFacePosition(FacePosition p) {
-    switch (p) {
-      case FacePosition::Up:
-        return "Up";
-      break;
-      case FacePosition::Down:
-        return "Down";
-      break;
-      default:
-        return "error";
-      break;
-    }
-    return "undefined";
+std::string GetFacePosition(FacePosition p) {
+  switch (p) {
+  case FacePosition::Up:
+    return "Up";
+    break;
+  case FacePosition::Down:
+    return "Down";
+    break;
+  case FacePosition::Front:
+    return "Front";
+  case FacePosition::Back:
+    return "Back";
+  case FacePosition::Left:
+    return "Left";
+  case FacePosition::Right:
+    return "Right";
+  default:
+    return "error";
+    break;
   }
-}  // namespace
+  return "undefined";
+}
 
+} // namespace
+
+// Horizontal move.
 void Cube::HorizontalMove(int stripNo) {
   Face front = cube[FacePosition::Front];
   // Left -> Front
-  front.SwapIthRow(cube[FacePosition::Left].GetIthRow(stripNo), stripNo);
+  cube[FacePosition::Front].SwapIthRow(
+      cube[FacePosition::Left].GetIthRow(stripNo), stripNo);
   // Back -> Left
   cube[FacePosition::Left].SwapIthRow(
       cube[FacePosition::Back].GetIthRow(stripNo), stripNo);
@@ -37,6 +48,7 @@ void Cube::HorizontalMove(int stripNo) {
   cube[FacePosition::Right].SwapIthRow(front.GetIthRow(stripNo), stripNo);
 }
 
+// Vertical move.
 void Cube::VerticalMove(int stripNo) {
   Face front = cube[FacePosition::Front];
   // Top -> Front
@@ -62,8 +74,10 @@ void Cube::RearrangeCube() {
     int random_num3 = rand() % 3;
     int random_num4 = rand() % 3;
 
-    if (random_num1 < 5) HorizontalMove(random_num3);
-    if (random_num2 < 5) VerticalMove(random_num4);
+    if (random_num1 < 5)
+      HorizontalMove(random_num3);
+    if (random_num2 < 5)
+      VerticalMove(random_num4);
   }
 }
 
@@ -78,6 +92,13 @@ void Cube::PrintCube() {
     face.PrintFace();
     std::cout << "\n\n";
   }
+}
+
+bool Cube::IsCubeSolved() {
+  for (auto [position, face] : cube) {
+    if (!face.IsFaceUniform()) return false;
+  }
+  return true;
 }
 
 } // namespace rubiks
