@@ -47,7 +47,7 @@ public:
   }
 
   /* Copy Constructor */
-  Face(const Face& other) {
+  Face(const Face &other) {
     colors_ = new Color *[3];
     position_ = other.position_;
     for (int i = 0; i < 3; i++) {

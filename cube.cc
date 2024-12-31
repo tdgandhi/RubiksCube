@@ -2,6 +2,7 @@
 
 #include <stdexcept>
 #include <string>
+#include <iostream>
 
 namespace rubiks {
 
@@ -20,7 +21,7 @@ namespace {
     }
     return "undefined";
   }
-}
+}  // namespace
 
 void Cube::HorizontalMove(int stripNo) {
   Face front = cube[FacePosition::Front];
@@ -73,7 +74,9 @@ bool Cube::IsValidPermutation() {
 
 void Cube::PrintCube() {
   for (auto [position, face] : cube) {
-
+    std::cout << GetFacePosition(position) << "\n";
+    face.PrintFace();
+    std::cout << "\n\n";
   }
 }
 

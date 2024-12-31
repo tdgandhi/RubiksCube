@@ -15,7 +15,7 @@ public:
      cube[position] = Face(face);
     }
   }
-  
+
   // Randomly initialies a given permutation of a cube.
   Cube(bool solved) {
     for (int i = 1; i <= 6; i++) {

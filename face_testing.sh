@@ -1,0 +1,1 @@
+g++ -std=c++17 face_test.cc face.h face.cc /Users/tejangandhi/Programming/CatchTesting/catch_amalgamated.hpp /Users/tejangandhi/Programming/CatchTesting/catch_amalgamated.cpp
