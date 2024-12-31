@@ -68,7 +68,7 @@ void Cube::RearrangeCube() {
 }
 
 bool Cube::IsValidPermutation() {
-  // TODO: Implement
+  // TODO: Implement this.
   throw std::logic_error("Function not implemented yet");
 }
 
