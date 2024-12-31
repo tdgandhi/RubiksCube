@@ -49,6 +49,9 @@ public:
   // Check if the given cube is a valid permutation or not.
   bool IsValidPermutation();
 
+  // Prints the cube.
+  void PrintCube();
+
 private:
     // A map which stores face positions with the faces.
     std::map<FacePosition, Face> cube;

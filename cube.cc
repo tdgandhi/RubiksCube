@@ -1,8 +1,26 @@
 #include "/Users/tejangandhi/Programming/RubiksCube/cube.h"
 
 #include <stdexcept>
+#include <string>
 
 namespace rubiks {
+
+namespace {
+  std::string GetFacePosition(FacePosition p) {
+    switch (p) {
+      case FacePosition::Up:
+        return "Up";
+      break;
+      case FacePosition::Down:
+        return "Down";
+      break;
+      default:
+        return "error";
+      break;
+    }
+    return "undefined";
+  }
+}
 
 void Cube::HorizontalMove(int stripNo) {
   Face front = cube[FacePosition::Front];
@@ -48,9 +66,15 @@ void Cube::RearrangeCube() {
   }
 }
 
-bool IsValidPermutation() {
+bool Cube::IsValidPermutation() {
   // TODO: Implement
   throw std::logic_error("Function not implemented yet");
+}
+
+void Cube::PrintCube() {
+  for (auto [position, face] : cube) {
+
+  }
 }
 
 } // namespace rubiks
