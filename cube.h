@@ -28,18 +28,26 @@ public:
     }
   }
 
-  /* 
+  // Default constructor. Returns an unsolved cube.
+  Cube() {
+    Cube(false);
+  }
+
+  /*
     Makes a vertical move. Specify which strip to move.
     stripNo defines the position of the strip to move: 0 (left), 1 (middle), 2 (right)
   */
   void VerticalMove(int stripNo);
 
   // Makes a horizontal move. Specify which strip to move.
-  // stripNo defines the position of the strip to move: 0 (top), 1 (middle), 2 (bottom)
+  // stripNo defines the position of the strip to move: 0 (top), 1 (middle), 2 (bottom).
   void HorizontalMove(int stripNo);
 
   // Randomly rearranges the cube using random number of vertical/horizontal moves.
   void RearrangeCube();
+
+  // Check if the given cube is a valid permutation or not.
+  bool IsValidPermutation();
 
 private:
     // A map which stores face positions with the faces.
