@@ -7,6 +7,7 @@
 build/
 dist/
 bin/
+a.out
 
 # Ignore IDE and editor files
 .idea/
