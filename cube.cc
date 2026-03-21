@@ -7,7 +7,7 @@
 namespace rubiks {
 
 namespace {
-std::string GetFacePosition(FacePosition p) {
+std::string GetFacePositionStr(FacePosition p) {
   switch (p) {
   case FacePosition::Up:
     return "Up";
@@ -88,7 +88,7 @@ bool Cube::IsValidPermutation() {
 
 void Cube::PrintCube() {
   for (auto [position, face] : cube) {
-    std::cout << GetFacePosition(position) << "\n";
+    std::cout << GetFacePositionStr(position) << "\n";
     face.PrintFace();
     std::cout << "\n\n";
   }

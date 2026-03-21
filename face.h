@@ -1,106 +1,94 @@
-#ifndef  FACE_H
+#ifndef FACE_H
 #define FACE_H
 
-#include <vector>
+#include "types.h"
+
+#include <array>
+#include <stdexcept>
 
 namespace rubiks {
 
-enum class Color {
-  Color1 = 1,
-  Color2 = 2,
-  Color3 = 3,
-  Color4 = 4,
-  Color5 = 5,
-  Color6 = 6
-};
-enum class FacePosition {
-  Up = 1,
-  Down = 2,
-  Front = 3,
-  Back = 4,
-  Left = 5,
-  Right = 6
-};
-
-// Represents a face of a standard rubik's cube.
+// Represents a face of a standard Rubik's Cube.
+// Each face is a 3x3 grid of colored tiles.
 class Face {
 public:
-  /* Constructor 1 of Face class, this accept an array of 3x3 and initializes
-   * the face */
-  Face(Color colors[3][3], FacePosition position) : position_(position) {
-    colors_ = new Color *[3];
-    for (int i = 0; i < 3; i++) {
-      colors_[i] = new Color[3];
-      for (int j = 0; j < 3; j++) {
-        colors_[i][j] = colors[i][j];
-      }
-    }
-  }
+  // Constructor: Creates a face from a 3x3 array of colors.
+  Face(const Color colors[3][3], FacePosition position);
 
-  /* Constructor 2 of Face class. This accepts a color and initializes entire
-   * face with that color */
-  Face(Color color, FacePosition position) : position_(position) {
-    colors_ = new Color *[3];
-    for (int i = 0; i < 3; i++) {
-      colors_[i] = new Color[3];
-      for (int j = 0; j < 3; j++) {
-        colors_[i][j] = color;
-      }
-    }
-  }
+  // Constructor: Creates a uniform face with a single color.
+  Face(Color color, FacePosition position);
 
-  /* Copy Constructor */
-  Face(const Face &other) {
-    colors_ = new Color *[3];
-    position_ = other.position_;
-    for (int i = 0; i < 3; i++) {
-      colors_[i] = new Color[3];
-      for (int j = 0; j < 3; j++) {
-        colors_[i][j] = other.colors_[i][j];
-      }
-    }
-  }
+  // Copy constructor
+  Face(const Face& other) = default;
 
-  /* This is the default constructor. It gives a cube with random colors.
-  Never use this */
-  Face() {
-    colors_ = new Color *[3];
-    for (int i = 0; i < 3; i++) {
-      colors_[i] = new Color[3];
-      for (int j = 0; j < 3; j++) {
-        colors_[i][j] = Color(std::rand() % 6 + 1);
-      }
-    }
-  }
+  // Move constructor
+  Face(Face&& other) noexcept = default;
 
-  // Retuns ith row of the face.
-  Color *GetIthRow(int i);
+  // Copy assignment operator
+  Face& operator=(const Face& other) = default;
 
-  // Returns ith column of the face.
-  Color *GetIthColumn(int i);
+  // Move assignment operator
+  Face& operator=(Face&& other) noexcept = default;
 
-  // Swaps the ith row of the face with the passed in row.
-  bool SwapIthRow(const Color row[], int i);
+  // Destructor
+  ~Face() = default;
 
-  // Swaps the ith row of the face with the passed in row.s
-  bool SwapIthColumn(const Color column[], int i);
+  // Deleted default constructor - a face must have a position and colors.
+  Face() = delete;
 
-  // Prints the face.
-  void PrintFace();
+  // Returns the ith row of the face (0-indexed).
+  // Throws std::out_of_range if i is not in [0, 2].
+  std::array<Color, 3> GetIthRow(int i) const;
 
-  // Prints the color.
-  void PrintColor(Color color);
+  // Returns the ith column of the face (0-indexed).
+  // Throws std::out_of_range if i is not in [0, 2].
+  std::array<Color, 3> GetIthColumn(int i) const;
 
-  // Check if the face is uniform or not.
-  bool IsFaceUniform();
+  // Sets the ith row of the face to the given row.
+  // Throws std::out_of_range if i is not in [0, 2].
+  void SetIthRow(const std::array<Color, 3>& row, int i);
+
+  // Sets the ith column of the face to the given column.
+  // Throws std::out_of_range if i is not in [0, 2].
+  void SetIthColumn(const std::array<Color, 3>& column, int i);
+
+  // Returns the color at position (row, col).
+  // Throws std::out_of_range if row or col is not in [0, 2].
+  Color GetColor(int row, int col) const;
+
+  // Sets the color at position (row, col).
+  // Throws std::out_of_range if row or col is not in [0, 2].
+  void SetColor(int row, int col, Color color);
+
+  // Returns the position of this face on the cube.
+  FacePosition GetPosition() const { return position_; }
+
+  // Prints the face to stdout.
+  void PrintFace() const;
+
+  // Prints a single color to stdout.
+  static void PrintColor(Color color);
+
+  // Returns true if all tiles on the face have the same color.
+  bool IsFaceUniform() const;
+
+  // Rotates the face 90 degrees clockwise.
+  void RotateClockwise();
+
+  // Rotates the face 90 degrees counter-clockwise.
+  void RotateCounterClockwise();
 
 private:
-  // This 2D grid represents the tiles in face.
-  Color **colors_;
-  // Represents the position of the face in the cube.
+  // Validates that an index is in the range [0, 2].
+  static void ValidateIndex(int index, const char* name);
+
+  // The 3x3 grid of colors representing the tiles on this face.
+  std::array<std::array<Color, 3>, 3> colors_;
+
+  // The position of this face on the cube.
   FacePosition position_;
 };
 
 } // namespace rubiks
 
-#endif
+#endif // FACE_H
