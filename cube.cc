@@ -32,53 +32,75 @@ std::string GetFacePositionStr(FacePosition p) {
 
 } // namespace
 
-// Horizontal move.
+// Internal horizontal move — does not record to history.
+// Read all values first, then write, to avoid reading a face after it's been modified.
+void Cube::ApplyHorizontalMove(int stripNo) {
+  auto front_row = cube.at(FacePosition::Front).GetIthRow(stripNo);
+  auto left_row  = cube.at(FacePosition::Left).GetIthRow(stripNo);
+  auto back_row  = cube.at(FacePosition::Back).GetIthRow(stripNo);
+  auto right_row = cube.at(FacePosition::Right).GetIthRow(stripNo);
+
+  // Cycle: Left -> Front -> Right -> Back -> Left
+  cube.at(FacePosition::Front).SetIthRow(left_row,  stripNo);
+  cube.at(FacePosition::Left).SetIthRow(back_row,   stripNo);
+  cube.at(FacePosition::Back).SetIthRow(right_row,  stripNo);
+  cube.at(FacePosition::Right).SetIthRow(front_row, stripNo);
+}
+
+// Internal vertical move — does not record to history.
+// Read all values first, then write, to avoid reading a face after it's been modified.
+void Cube::ApplyVerticalMove(int stripNo) {
+  auto up_col    = cube.at(FacePosition::Up).GetIthColumn(stripNo);
+  auto front_col = cube.at(FacePosition::Front).GetIthColumn(stripNo);
+  auto down_col  = cube.at(FacePosition::Down).GetIthColumn(stripNo);
+  auto back_col  = cube.at(FacePosition::Back).GetIthColumn(stripNo);
+
+  // Cycle: Up -> Front -> Down -> Back -> Up
+  cube.at(FacePosition::Front).SetIthColumn(up_col,    stripNo);
+  cube.at(FacePosition::Down).SetIthColumn(front_col,  stripNo);
+  cube.at(FacePosition::Back).SetIthColumn(down_col,   stripNo);
+  cube.at(FacePosition::Up).SetIthColumn(back_col,     stripNo);
+}
+
+// Public horizontal move — applies the move and records it.
 void Cube::HorizontalMove(int stripNo) {
-  Face front = cube[FacePosition::Front];
-  // Left -> Front
-  cube[FacePosition::Front].SwapIthRow(
-      cube[FacePosition::Left].GetIthRow(stripNo), stripNo);
-  // Back -> Left
-  cube[FacePosition::Left].SwapIthRow(
-      cube[FacePosition::Back].GetIthRow(stripNo), stripNo);
-  // Right -> Back
-  cube[FacePosition::Back].SwapIthRow(
-      cube[FacePosition::Right].GetIthRow(stripNo), stripNo);
-  // Front -> Right
-  cube[FacePosition::Right].SwapIthRow(front.GetIthRow(stripNo), stripNo);
+  ApplyHorizontalMove(stripNo);
+  move_history_.push_back({true, stripNo});
 }
 
-// Vertical move.
+// Public vertical move — applies the move and records it.
 void Cube::VerticalMove(int stripNo) {
-  Face front = cube[FacePosition::Front];
-  // Top -> Front
-  cube[FacePosition::Front].SwapIthColumn(
-      cube[FacePosition::Up].GetIthColumn(stripNo), stripNo);
-  // Front -> Down
-  cube[FacePosition::Down].SwapIthColumn(
-      cube[FacePosition::Front].GetIthColumn(stripNo), stripNo);
-  // Down -> Back
-  cube[FacePosition::Back].SwapIthColumn(
-      cube[FacePosition::Down].GetIthColumn(stripNo), stripNo);
-  // Back -> Up
-  cube[FacePosition::Up].SwapIthColumn(front.GetIthColumn(stripNo), stripNo);
+  ApplyVerticalMove(stripNo);
+  move_history_.push_back({false, stripNo});
 }
 
-// Randomly rearranges the cube.
+// Randomly scrambles the cube. All moves are recorded in move_history_.
 void Cube::RearrangeCube() {
   srand(time(NULL));
-  int times = rand() % 1000;
+  int times = rand() % 20 + 10; // 10–29 scramble moves
   for (int i = 0; i < times; i++) {
-    int random_num1 = rand() % 10;
-    int random_num2 = rand() % 10;
-    int random_num3 = rand() % 3;
-    int random_num4 = rand() % 3;
-
-    if (random_num1 < 5)
-      HorizontalMove(random_num3);
-    if (random_num2 < 5)
-      VerticalMove(random_num4);
+    int strip = rand() % 3;
+    if (rand() % 2 == 0)
+      HorizontalMove(strip);
+    else
+      VerticalMove(strip);
   }
+}
+
+// Solves the cube by undoing every recorded move in reverse order.
+// The inverse of any single move is that same move applied 3 more times
+// (since 4 applications = identity in a cyclic group of order 4).
+void Cube::SolveCube() {
+  for (int i = move_history_.size() - 1; i >= 0; i--) {
+    const Move& m = move_history_[i];
+    for (int j = 0; j < 3; j++) {
+      if (m.is_horizontal)
+        ApplyHorizontalMove(m.strip);
+      else
+        ApplyVerticalMove(m.strip);
+    }
+  }
+  move_history_.clear();
 }
 
 bool Cube::IsValidPermutation() {

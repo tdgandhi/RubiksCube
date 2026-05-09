@@ -2,6 +2,7 @@
 #define CUBE_H
 
 #include <map>
+#include <vector>
 #include <stdexcept>
 #include <iostream>
 
@@ -14,18 +15,16 @@ public:
   // Given another cube, initializes this cube.
   Cube(const Cube &other) {
     for (auto [position, face] : other.cube) {
-      cube[position] = Face(face);
+      cube.emplace(position, face);
     }
   }
 
-  // Randomly initialies a given permutation of a cube.
+  // Randomly initializes a given permutation of a cube.
   Cube(bool solved) {
     for (int i = 1; i <= 6; i++) {
-      cube[FacePosition(i)] = Face(Color(i), FacePosition(i));
+      cube.emplace(FacePosition(i), Face(Color(i), FacePosition(i)));
     }
-    // They don't want it solved.
     if (!solved) {
-      // Randomly unsolve it.
       RearrangeCube();
     }
   }
@@ -33,21 +32,18 @@ public:
   // Default constructor. Returns an unsolved cube.
   Cube() : Cube(false) {}
 
-  /*
-    Makes a vertical move. Specify which strip to move.
-    stripNo defines the position of the strip to move: 0 (left), 1 (middle), 2
-    (right)
-  */
+  // Makes a vertical move. stripNo: 0 (left), 1 (middle), 2 (right).
   void VerticalMove(int stripNo);
 
-  // Makes a horizontal move. Specify which strip to move.
-  // stripNo defines the position of the strip to move: 0 (top), 1 (middle), 2
-  // (bottom).
+  // Makes a horizontal move. stripNo: 0 (top), 1 (middle), 2 (bottom).
   void HorizontalMove(int stripNo);
 
-  // Randomly rearranges the cube using random number of vertical/horizontal
-  // moves.
+  // Randomly scrambles the cube and records all moves made.
   void RearrangeCube();
+
+  // Solves the cube by reversing every recorded move in reverse order.
+  // Each move's inverse is the same move applied 3 more times.
+  void SolveCube();
 
   // Check if the given cube is a valid permutation or not.
   bool IsValidPermutation();
@@ -59,8 +55,21 @@ public:
   bool IsCubeSolved();
 
 private:
+  // Represents a single move applied to the cube.
+  struct Move {
+    bool is_horizontal;
+    int strip;
+  };
+
   // A map which stores face positions with the faces.
   std::map<FacePosition, Face> cube;
+
+  // History of every move applied since the last solve.
+  std::vector<Move> move_history_;
+
+  // Internal versions that skip recording (used during solving).
+  void ApplyHorizontalMove(int stripNo);
+  void ApplyVerticalMove(int stripNo);
 };
 
 } // namespace rubiks
