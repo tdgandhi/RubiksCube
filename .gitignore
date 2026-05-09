@@ -17,6 +17,9 @@ a.out
 *.sublime-project
 *.sublime-workspace
 
+# Tool caches (e.g. clangd index under .cache/clangd/)
+.cache/
+
 # Ignore logs and temporary files
 *.log
 *.tmp
