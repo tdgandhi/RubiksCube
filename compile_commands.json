@@ -1,0 +1,69 @@
+[
+  {
+    "directory": "/Users/tejangandhi/Programming/RubiksCube",
+    "file": "/Users/tejangandhi/Programming/RubiksCube/cube.cc",
+    "arguments": [
+      "/usr/bin/clang++",
+      "-std=c++17",
+      "-Wall",
+      "-Wextra",
+      "-I/Users/tejangandhi/Programming/RubiksCube",
+      "-c",
+      "/Users/tejangandhi/Programming/RubiksCube/cube.cc"
+    ]
+  },
+  {
+    "directory": "/Users/tejangandhi/Programming/RubiksCube",
+    "file": "/Users/tejangandhi/Programming/RubiksCube/cube_test.cc",
+    "arguments": [
+      "/usr/bin/clang++",
+      "-std=c++17",
+      "-Wall",
+      "-Wextra",
+      "-I/Users/tejangandhi/Programming/RubiksCube",
+      "-I/Users/tejangandhi/Programming/CatchTesting",
+      "-c",
+      "/Users/tejangandhi/Programming/RubiksCube/cube_test.cc"
+    ]
+  },
+  {
+    "directory": "/Users/tejangandhi/Programming/RubiksCube",
+    "file": "/Users/tejangandhi/Programming/RubiksCube/face.cc",
+    "arguments": [
+      "/usr/bin/clang++",
+      "-std=c++17",
+      "-Wall",
+      "-Wextra",
+      "-I/Users/tejangandhi/Programming/RubiksCube",
+      "-c",
+      "/Users/tejangandhi/Programming/RubiksCube/face.cc"
+    ]
+  },
+  {
+    "directory": "/Users/tejangandhi/Programming/RubiksCube",
+    "file": "/Users/tejangandhi/Programming/RubiksCube/face_test.cc",
+    "arguments": [
+      "/usr/bin/clang++",
+      "-std=c++17",
+      "-Wall",
+      "-Wextra",
+      "-I/Users/tejangandhi/Programming/RubiksCube",
+      "-I/Users/tejangandhi/Programming/CatchTesting",
+      "-c",
+      "/Users/tejangandhi/Programming/RubiksCube/face_test.cc"
+    ]
+  },
+  {
+    "directory": "/Users/tejangandhi/Programming/RubiksCube",
+    "file": "/Users/tejangandhi/Programming/RubiksCube/rubiks.cc",
+    "arguments": [
+      "/usr/bin/clang++",
+      "-std=c++17",
+      "-Wall",
+      "-Wextra",
+      "-I/Users/tejangandhi/Programming/RubiksCube",
+      "-c",
+      "/Users/tejangandhi/Programming/RubiksCube/rubiks.cc"
+    ]
+  }
+]

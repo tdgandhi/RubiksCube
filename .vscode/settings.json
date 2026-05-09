@@ -1,0 +1,5 @@
+{
+  "clangd.path": "clangd",
+  "clangd.arguments": ["--background-index"],
+  "C_Cpp.intelliSenseEngine": "disabled"
+}
