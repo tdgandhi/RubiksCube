@@ -1,6 +1,7 @@
 #ifndef CUBE_H
 #define CUBE_H
 
+#include <cstddef>
 #include <map>
 #include <vector>
 #include <stdexcept>
@@ -9,6 +10,11 @@
 #include "/Users/tejangandhi/Programming/RubiksCube/face.h"
 
 namespace rubiks {
+
+struct SolveCubeStats {
+  std::size_t undo_iterations{};
+  std::size_t primitive_moves{};
+};
 
 class Cube {
 public:
@@ -43,7 +49,7 @@ public:
 
   // Solves the cube by reversing every recorded move in reverse order.
   // Each move's inverse is the same move applied 3 more times.
-  void SolveCube();
+  SolveCubeStats SolveCube();
 
   // Check if the given cube is a valid permutation or not.
   bool IsValidPermutation();

@@ -90,17 +90,21 @@ void Cube::RearrangeCube() {
 // Solves the cube by undoing every recorded move in reverse order.
 // The inverse of any single move is that same move applied 3 more times
 // (since 4 applications = identity in a cyclic group of order 4).
-void Cube::SolveCube() {
-  for (int i = move_history_.size() - 1; i >= 0; i--) {
+SolveCubeStats Cube::SolveCube() {
+  SolveCubeStats stats;
+  stats.undo_iterations = move_history_.size();
+  for (int i = static_cast<int>(move_history_.size()) - 1; i >= 0; i--) {
     const Move& m = move_history_[i];
     for (int j = 0; j < 3; j++) {
       if (m.is_horizontal)
         ApplyHorizontalMove(m.strip);
       else
         ApplyVerticalMove(m.strip);
+      stats.primitive_moves++;
     }
   }
   move_history_.clear();
+  return stats;
 }
 
 bool Cube::IsValidPermutation() {
